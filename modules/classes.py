@@ -5,15 +5,17 @@ class Register:
         self.__email = email
         self.__password = password
 
-    def validate_email(self):
+    @staticmethod
+    def validate_email(email):
         regex = r'\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Z|a-z]{2,7}\b'
-        if re.fullmatch(regex, self.__email):
+        if re.fullmatch(regex, email):
             return True
         else:
             return False
-        
-    def email_taken(self, currentEmail):
-        with open("userDB.json", 'r') as openfile:
+    
+    @staticmethod
+    def email_taken(currentEmail):
+        with open("userdb.json", 'r') as openfile:
             json_object = json.load(openfile)
 
         usersCount = len(json_object)

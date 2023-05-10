@@ -10,10 +10,9 @@ while decision != "x":
     confirmPassword = getpass.getpass("Confirm password: ")
 
     if password==confirmPassword:
-        newUser = Register(email, password)
-
-        if newUser.validate_email():
-            if not newUser.email_taken(email):
+        if Register.validate_email(email):
+            if not Register.email_taken(email):
+                newUser = Register(email, password)
                 newUser.save_new_user()
             else:
                 print("This email is already taken. Please ry again!")
